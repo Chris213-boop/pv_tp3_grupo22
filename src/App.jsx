@@ -3,6 +3,7 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import Productos from './assets/components/Producto'
 import './App.css'
+import Tarea from "./assets/components/Tarea";
 
 function App() {
   const [count, setCount] = useState(0)
@@ -30,6 +31,7 @@ function App() {
         Click on the Vite and React logos to learn more
       </p>
       <Productos/>
+      <Tarea/>
 
     </>
   )
