@@ -4,8 +4,8 @@ function Tarea() {
   const [tasks, setTasks] = useState([
     {
       id: 1,
-      nombre: "iniciar proyecto",
-      descripcion: "crear repositorio en Github y subir los cambios",
+      nombre: "Iniciar Proyecto",
+      descripcion: "Crear repositorio en Github y subir los cambios",
       fecha: "14-06-25",
     },
   ]);
@@ -39,36 +39,38 @@ function Tarea() {
     };
 
     setTasks([...tasks, newTask]);
+    alert(" Tarea agregada:   "+ nombre + "  -  Descripción:  " + descripcion);
     setNombre("");
     setDescripcion("");
     setFecha("");
   };
 
+
   return (
-    <div>
-      <h2>Lista de Tareas</h2>
-      <form onSubmit={handleAddTask}>
-        <input
+    <div className="container">
+      <h2 className="titulo">Lista de Tareas</h2>
+      <form onSubmit={handleAddTask} className="formulario">
+        <input className="input"
           type="text"
           placeholder="Nombre"
           value={nombre}
           onChange={(e) => setNombre(e.target.value)}
         />
-        <input
+        <input className="input"
           type="text"
           placeholder="Descripción"
           value={descripcion}
           onChange={(e) => setDescripcion(e.target.value)}
         />
-        <input
+        <input className="input"
           type="date"
           value={fecha}
           onChange={(e) => setFecha(e.target.value)}
         />
-        <button type="submit">Agregar Tarea</button>
+        <button type="submit" className="boton">Agregar Tarea</button>
       </form>
 
-      <ul>
+      <ul className="lista">
         {tasks.map((task) => (
           <li key={task.id}>
             <strong>{task.nombre}</strong>: {task.descripcion} ({task.fecha})
