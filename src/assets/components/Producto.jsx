@@ -43,6 +43,12 @@ const preciosConIVA = productos.map((p) =>{
 });
 console.log(preciosConIVA);
 
+// 4 - Ordenar el array original por precio (de menor a mayor)
+productos.sort((a, b) => a.precio - b.precio);
+console.log("Productos ordenados por precio (ascendente):");
+console.log(productos);
+
+
 //5 - Agregar un nuevo producto al final del array (por ejemplo, { descripcion: "Parlante
 //   Bluetooth", precio: 59000.90 }).
 productos.push({
