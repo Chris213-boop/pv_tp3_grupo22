@@ -38,6 +38,16 @@ productos.push({
   nombre: "Parlante Bluetooth",
   precio: 59000.90
 });
+//6 - Eliminar el producto con el precio mas bajo del array. Mostrar como queda el array. 
+const precios = productos.map(p => p.precio);
+  const precioMinimo = Math.min(...precios);
+  const indexMin = productos.findIndex(p => p.precio === precioMinimo);
+  if (indexMin !== -1) {
+    productos.splice(indexMin, 1);
+  }
+
+  console.log("Array después de eliminar el producto con el precio más bajo:");
+  console.log(productos);
 
   return (
     <div>
