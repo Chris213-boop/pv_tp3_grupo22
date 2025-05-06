@@ -146,3 +146,47 @@ body {
 .boton:active {
     background-color: #5b105b; /* Fondo más oscuro al hacer clic */
 }
+
+/* Estilo para tarea completada (tachado) */
+.completada {
+    text-decoration: line-through;
+    color: #999; /* gris más claro */
+}
+
+/* Contenedor de botones de acción */
+.botones-tarea {
+    margin-top: 8px;
+}
+
+/* Botón para completar tarea */
+.boton-completar {
+    background-color: #4CAF50; /* verde */
+    color: white;
+    padding: 6px 12px;
+    font-size: 0.9rem;
+    margin-right: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.boton-completar:hover {
+    background-color: #388e3c;
+}
+
+/* Botón para eliminar tarea */
+.boton-eliminar {
+    background-color: #e53935; /* rojo */
+    color: white;
+    padding: 6px 12px;
+    font-size: 0.9rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.boton-eliminar:hover {
+    background-color: #c62828;
+}
