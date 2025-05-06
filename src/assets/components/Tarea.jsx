@@ -45,6 +45,20 @@ function Tarea() {
     setFecha("");
   };
 
+  // Marcar como completada o no
+  const toggleTareaCompletada = (id) => {
+    setTasks(
+      tasks.map((task) =>
+        task.id === id ? { ...task, completada: !task.completada } : task
+      )
+    );
+  };
+
+  // Eliminar tarea
+  const eliminarTarea = (id) => {
+    setTasks(tasks.filter((task) => task.id !== id));
+  };
+
 
   return (
     <div className="container">
@@ -69,14 +83,26 @@ function Tarea() {
         />
         <button type="submit" className="boton">Agregar Tarea</button>
       </form>
-
+      
       <ul className="lista">
         {tasks.map((task) => (
           <li key={task.id}>
-            <strong>{task.nombre}</strong>: {task.descripcion} ({task.fecha})
+            <span className={task.completada ? "completada" : ""}>
+              <strong>{task.nombre}</strong>: {task.descripcion} ({task.fecha})
+            </span>
+            {/* Mostrar botones solo si no es la tarea con id 1 */}
+            {task.id !== 1 && (
+              <div className="botones-tarea">
+                <button className="boton-completar" onClick={() => toggleTareaCompletada(task.id)}>
+                  {task.completada ? "Realizada" : "Realizar"}
+                </button>
+                <button className="boton-eliminar" onClick={() => eliminarTarea(task.id)}>Eliminar</button>
+              </div>
+            )}
           </li>
         ))}
       </ul>
+
     </div>
   );
 }
