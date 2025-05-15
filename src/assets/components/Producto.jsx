@@ -1,86 +1,59 @@
-import React from 'react';
-import App from '../../App';
 
-const productos = [
-  { id: 1, nombre: 'Camisa', precio: 25 },
-  { id: 2, nombre: 'Pantalón', precio: 40 },
-  { id: 3, nombre: 'Remera', precio: 20  },
-  { id: 4, nombre: 'Buzos', precio: 60 },
-  { id: 5, nombre: 'Zapatos', precio: 59 },
-  { id: 6, nombre: 'Camperas', precio: 65 },
-  { id: 7, nombre: 'Gorras', precio: 15 },
-  { id: 8, nombre: 'Chombas', precio: 50 },
-  { id: 9, nombre: 'Guantes', precio: 18 },
-  { id: 10, nombre: 'Bufandas', precio: 22 }
-];
+function Productos () {
+    let productos = []; //array simple para guardar productos
+    
 
-function Productos() {
-  // console.log("Lista de productos:");
-  // console.log(productos);
+    function manejarSubmit(evento) {
+        evento.preventDeFault (); //evita la recarga
 
-//1 - Mostrar en consola cada producto en el formato: "Producto: [descripción] - Precio:
-//        $[precio]", usando forEach.
+        const nombre = document.getElementById ("nombre").value;
+        const precio = document.getElementById ("precio").value;
 
-productos.forEach((producto, index) => {
-  console.log("Producto",index + 1,": " , producto.nombre," - Precio: $" , producto.precio);
-});
+        const producto = { nombre, precio };
+        productos.push(producto);
 
-console.log("---------------------------------------------");
+        const lista = document.getElementById ("lista-productos");
+        const item = document.createElement('li');
+        item.textContent = `Producto: ${producto.nombre} - Precio: $${producto.precio}`;
+        lista.appendChild(item);
+    }
 
-// 2 - Crear un nuevo array con los productos cuyo precio sea mayor a $20, usando filter.
-const preciosMayores = productos.filter((productos => (productos.precio > 20)));
-console.log(preciosMayores);
-
-// 3 - Crear un array con los productos, pero con el precio con IVA incluido (21%), usando map.
-
-// map : devuelve un nuevo array
-const preciosConIVA = productos.map((p) =>{
-  return {
-    ...p,
-    precio : p.precio + (0.21 * p.precio)
-  }
-
-});
-console.log(preciosConIVA);
-
-// 4 - Ordenar el array original por precio (de menor a mayor)
-productos.sort((a, b) => a.precio - b.precio);
-console.log("Productos ordenados por precio (ascendente):");
-console.log(productos);
+// render() {
+//   return (
+//     <div className='container'>
+//       <h2 className='titulo'>Productos disponibles</h2>
+//       <ul className='lista'>
+//         {this.state.productos.map(producto => (
+//           <li key={producto.id}>
+//             {producto.nombre} - ${producto.precio}
+//           </li>
+//         ))}
+//       </ul>
+//       <button onClick={this.agregarProducto} className='boton-completar'>Agregar Producto</button>
+//       <button onClick={this.eliminarProductoMasBarato} className='boton-eliminar'>Eliminar producto más barato</button>
+//     </div>
+//     );
+//   }
+// }
+// export default Productos;
 
 
-//5 - Agregar un nuevo producto al final del array (por ejemplo, { descripcion: "Parlante
-//   Bluetooth", precio: 59000.90 }).
-productos.push({
-  id: productos.length + 1 ,
-  nombre: "Parlante Bluetooth",
-  precio: 59000.90
-});
 
+    return(
+        <>
+        <div className='container'>
+          <h2 className='titulo'>LISTA DE PRODUCTOS</h2>
+          <form onSubmit={manejarSubmit}>
+              <input type="text" id='nombre' name="nombre" placeholder="nombre del producto" required />
+              <input type="text" id="precio" name="precio" placeholder="Precio" required />
+              <button id="boton" type="submit" className='boton'>Agregar Producto</button>
+          </form>
 
-//6 - Eliminar el producto con el precio mas bajo del array. Mostrar como queda el array.
-const precios = productos.map(p => p.precio);
-  const precioMinimo = Math.min(...precios);
-  const indexMin = productos.findIndex(p => p.precio === precioMinimo);
-  if (indexMin !== -1) {
-    productos.splice(indexMin, 1);
-  }
-
-  console.log("Array después de eliminar el producto con el precio más bajo:");
-  console.log(productos);
-
-  return (
-    <div className='container'>
-      <h2 className='titulo'>Productos disponibles</h2>
-      <ul className='lista'>
-        {productos.map(producto => (
-          <li key={producto.id}>
-            {producto.nombre} - ${producto.precio}
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
+          <h2>Productos Agregados</h2>
+          <ul id="lista-productos" className='lista'> </ul>
+          </div>
+        </>
+    );
+    
 }
-
 export default Productos;
